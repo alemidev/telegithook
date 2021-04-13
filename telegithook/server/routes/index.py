@@ -12,5 +12,5 @@ async def index(req: Request):
 @router.post("/")
 async def webhook_base(req: Request):
     doc = await req.json()
-    await send_raw_event(chat_id=-445530430, document=doc)
+    await send_raw_event(chat_id=-445530430, event=doc)
     return {"result": "OK"}
