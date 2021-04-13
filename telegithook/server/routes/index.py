@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Request
 
 from bot.messages import send_raw_event
+from env import get
 
 router = APIRouter()
 
@@ -12,5 +13,5 @@ async def index(req: Request):
 @router.post("/")
 async def webhook_base(req: Request):
     doc = await req.json()
-    await send_raw_event(chat_id=-445530430, event=doc)
+    await send_raw_event(chat_id=get("DEBUG_CHAT_ID"), event=doc)
     return {"result": "OK"}
