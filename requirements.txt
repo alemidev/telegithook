@@ -1,4 +1,5 @@
 fastapi
+uvicorn
 aiogram
 python-dotenv
 pyaml
