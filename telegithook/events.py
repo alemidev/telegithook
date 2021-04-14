@@ -1,9 +1,9 @@
-from strings.strings import get_string
+from .strings.strings import get_string
 
 class EventBase(object):
     KEY = "None"
 
-    def __init__(self, event: dict) -> EventBase:
+    def __init__(self, event: dict):
         self.event = event
 
     @staticmethod
@@ -31,4 +31,4 @@ class Commit(EventBase):
             )
         return out
 
-EVENTS = [ Commits ]
+EVENTS = [ Commit ]
