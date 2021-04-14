@@ -21,12 +21,12 @@ class Commit(EventBase):
 
     def parse(self) -> str:
         out = ""
-        out += self.action.head.format(
+        out += self.action.head().format(
             repo=self.event['repository']['full_name'],
             branch=self.event['repository']['master_branch'],
         )
         for commit in self.event[self.KEY]:
-            out += self.action.row.format(
+            out += self.action.row().format(
                 # TODO safe getter for this
                 author=commit['author']['username'],
                 message=commit['message'],
