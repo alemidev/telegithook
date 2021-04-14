@@ -27,6 +27,8 @@ async def webhook_base(req: Request):
 
             # still send this for debug purposes
             await send_raw_event(get("CHAT_ID"), json)
-    except:
-        pass
-    return {}
+        return {"ok": True, "result": True}
+    except Exception as e:
+        result = f"{type(e).__name__}: {e}"
+        print("Error:", result)
+        return {"ok": False, "result": result}
