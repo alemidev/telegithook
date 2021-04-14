@@ -22,7 +22,7 @@ class String:
 
 
 class Strings:
-    def __init__(self, _file: str = os.path.join(os.path.dirname(__file__), "strings.yml")):
+    def __init__(self, _file: str = os.path.join(os.path.dirname(__file__), 'strings.yml')):
         self._file = _file
         self._strings = {}
         self.reload_strings()
@@ -40,4 +40,4 @@ class Strings:
                 return String(self._strings[key])
 
     def action(self, key: str):
-        return self.get(key, "actions")
+        return self.get(key, 'actions')

@@ -2,7 +2,7 @@ from . import strings
 
 
 class EventBase(object):
-    KEY = "None"
+    KEY = 'None'
 
     def __init__(self, event: dict):
         self.event = event
@@ -20,27 +20,26 @@ class EventBase(object):
 
 
 class Commit(EventBase):
-    KEY = "commits"
+    KEY = 'commits'
 
     def parse(self) -> str:
-        out = ""
-        out += self.string.head().format(
+        to_return = self.string.head().format(
             repo=self.event['repository']['full_name'],
             branch=self.event['repository']['master_branch'],
         )
         for commit in self.event[self.KEY]:
-            out += self.string.row().format(
+            to_return += self.string.row().format(
                 # TODO safe getter for this
                 author=commit['author']['username'],
                 message=commit['message'],
                 url=commit['url'],
                 hash=commit['id'][:7],
             )
-        return out
+        return to_return
 
 
 class Fork(EventBase):
-    KEY = "forkee"
+    KEY = 'forkee'
 
     def parse(self) -> str:
         return self.string().format(
