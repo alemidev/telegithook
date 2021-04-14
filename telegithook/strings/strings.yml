@@ -1,5 +1,5 @@
 actions:
-  fork: "{sender} forked {repository}. Total forks now: {forks}."
+  forkee: "{sender} forked {repository}. Total forks now: {forks}."
   commits:
     head: "<code>→ </code> <b>{repo}</b> [<u>{branch}</u>] | <i>new commits</i>\n"
     row: "<code> → </code> <code>{author}</code> {message} [<a href=\"{url}\">{hash}</a>]\n"

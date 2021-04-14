@@ -36,4 +36,16 @@ class Commit(EventBase):
         return out
 
 
-EVENTS = [Commit]
+class Fork(EventBase):
+    KEY = "forkee"
+    action = strings.action(KEY)
+
+    def parse(self) -> str:
+        return self.action().format(
+            sender=self.event['sender']['login'],
+            repoository=self.event['repository']['full_name'],
+            forks=self.event['repository']['forks']
+        )
+
+
+EVENTS = [Commit, Fork]

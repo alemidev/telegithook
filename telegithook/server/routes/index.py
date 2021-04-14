@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Request
 
 from ...bot.messages import send_message, send_raw_event
-from ..helpers import to_html
 from ...events import EVENTS
 from ...env import get
 
