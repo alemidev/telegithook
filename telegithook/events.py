@@ -7,6 +7,10 @@ class EventBase(object):
     def __init__(self, event: dict):
         self.event = event
 
+    @property
+    def string(self):
+        return strings.action(self.KEY)
+
     @classmethod
     def isPresent(cls, event: dict) -> bool:
         return cls.KEY in event
@@ -17,16 +21,15 @@ class EventBase(object):
 
 class Commit(EventBase):
     KEY = "commits"
-    action = strings.action(KEY)
 
     def parse(self) -> str:
         out = ""
-        out += self.action.head().format(
+        out += self.string.head().format(
             repo=self.event['repository']['full_name'],
             branch=self.event['repository']['master_branch'],
         )
         for commit in self.event[self.KEY]:
-            out += self.action.row().format(
+            out += self.string.row().format(
                 # TODO safe getter for this
                 author=commit['author']['username'],
                 message=commit['message'],
@@ -38,12 +41,11 @@ class Commit(EventBase):
 
 class Fork(EventBase):
     KEY = "forkee"
-    action = strings.action(KEY)
 
     def parse(self) -> str:
-        return self.action().format(
-            sender=self.event['sender']['login'],
-            repoository=self.event['repository']['full_name'],
+        return self.string().format(
+            forker=self.event['sender']['login'],
+            repo=self.event['repository']['full_name'],
             forks=self.event['repository']['forks']
         )
 
