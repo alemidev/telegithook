@@ -24,5 +24,5 @@ async def webhook_base(req: Request):
     if text:
         await send_message(get("CHAT_ID"), text)
 
-    # still send this for debug purposes
-    await send_raw_event(get("CHAT_ID"), json)
+        # still send this for debug purposes
+        await send_raw_event(get("CHAT_ID"), json)
