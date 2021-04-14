@@ -15,16 +15,18 @@ async def index(req: Request):
 
 @router.post("/")
 async def webhook_base(req: Request):
-    json = await req.json()
+    try:
+        json = await req.json()
 
-    text = ""  # TODO fancier message/string builder
-    for event in EVENTS:
-        if event.isPresent(json):
-            text += event(json).parse()
-    if text:
-        await send_message(get("CHAT_ID"), text)
+        text = ""  # TODO fancier message/string builder
+        for event in EVENTS:
+            if event.isPresent(json):
+                text += event(json).parse()
+        if text:
+            await send_message(get("CHAT_ID"), text)
 
-        # still send this for debug purposes
-        await send_raw_event(get("CHAT_ID"), json)
-
+            # still send this for debug purposes
+            await send_raw_event(get("CHAT_ID"), json)
+    except:
+        pass
     return {}
