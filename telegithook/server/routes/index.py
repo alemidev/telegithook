@@ -8,6 +8,11 @@ from ...env import get
 router = APIRouter()
 
 
+@router.get("/")
+async def _(__):
+    return {}
+
+
 @router.post("/")
 async def webhook_base(req: Request):
     json = await req.json()
