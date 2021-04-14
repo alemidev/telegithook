@@ -9,7 +9,7 @@ router = APIRouter()
 
 
 @router.get("/")
-async def _(__):
+async def _():
     return {}
 
 
