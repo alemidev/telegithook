@@ -9,8 +9,8 @@ router = APIRouter()
 
 
 @router.get("/")
-async def _():
-    return {}
+async def index(req: Request):
+    return {"error": "you should send events as POST"}
 
 
 @router.post("/")
