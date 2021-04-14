@@ -1,3 +1,5 @@
-from . import strings
+from .strings import Strings
 
-get = strings.get_string
+strings = Strings()
+get = strings.get
+action = strings.action

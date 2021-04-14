@@ -1,4 +1,5 @@
-from .strings.strings import STRINGS
+from . import strings
+
 
 class EventBase(object):
     KEY = "None"
@@ -13,22 +14,26 @@ class EventBase(object):
     def parse(self) -> str:
         return str(self.event[self.KEY])
 
+
 class Commit(EventBase):
     KEY = "commits"
+    action = strings.action(KEY)
 
     def parse(self) -> str:
         out = ""
-        out += STRINGS["actions"]["commit"]["head"].format(
+        out += self.action.head.format(
             repo=self.event['repository']['full_name'],
             branch=self.event['repository']['master_branch'],
         )
         for commit in self.event[self.KEY]:
-            out += STRINGS["actions"]["commit"]["row"].format(
-                author=commit['author']['username'], # TODO safe getter for this
+            out += self.action.row.format(
+                # TODO safe getter for this
+                author=commit['author']['username'],
                 message=commit['message'],
                 url=commit['url'],
                 hash=commit['id'][:7],
             )
         return out
 
-EVENTS = [ Commit ]
+
+EVENTS = [Commit]
