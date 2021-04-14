@@ -26,3 +26,5 @@ async def webhook_base(req: Request):
 
         # still send this for debug purposes
         await send_raw_event(get("CHAT_ID"), json)
+
+    return {}
