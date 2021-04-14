@@ -2,7 +2,7 @@ from fastapi import APIRouter, Request
 
 from ...bot.messages import send_message
 from ..helpers import to_html
-from ... import strings
+from ...actions import actions
 from ...env import get
 
 router = APIRouter()
@@ -16,8 +16,8 @@ async def index(req: Request):
 @router.post("/")
 async def webhook_base(req: Request):
     json = await req.json()
-    actions = strings.get("actions")
 
     for action in actions:
+        print()
         if action in json:
             await send_message(get("CHAT_ID"), actions[action].format(_=json, __=to_html))
