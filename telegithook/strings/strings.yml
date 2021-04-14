@@ -1,4 +1,5 @@
 actions:
   forkee: "{__(_['sender']['login'], _['sender']['html_url'])} forked {__(_['repository']['name'], _['repository']['html_url'])}. Total forks now: {_['repository']['forks']}."
-  commitHead: "<code>→ </code> <b>{repo}</b> [<u>{branch}</u>] | <i>new commits</i>\n"
-  commitRow: "<code> → </code> <code>{author}</code> {message} [<a href=\"{url}\">{hash}</a>]\n"
+  commit:
+    head: "<code>→ </code> <b>{repo}</b> [<u>{branch}</u>] | <i>new commits</i>\n"
+    row: "<code> → </code> <code>{author}</code> {message} [<a href=\"{url}\">{hash}</a>]\n"
