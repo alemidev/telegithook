@@ -15,7 +15,7 @@ class String:
             if name in self.data:
                 return String(self.data[name])
 
-    def __iter__(self, name: str):
+    def __getitem__(self, name: str):
         if isinstance(self.data, dict):
             if name in self.data:
                 return String(self.data[name])
