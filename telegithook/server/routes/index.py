@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Request
 
-from bot.messages import send_raw_event
-from env import get
+from ...bot.messages import send_message
+from ..helpers import to_html
+from ... import strings
+from ...env import get
 
 router = APIRouter()
 
@@ -10,8 +12,12 @@ router = APIRouter()
 async def index(req: Request):
     return {"error": "you should send events as POST"}
 
+
 @router.post("/")
 async def webhook_base(req: Request):
-    doc = await req.json()
-    await send_raw_event(chat_id=get("DEBUG_CHAT_ID"), event=doc)
-    return {"result": "OK"}
+    json = await req.json()
+    actions = strings.get("actions")
+
+    for action in actions:
+        if action in json:
+            await send_message(get("CHAT_ID"), actions[action].format(_=json, __=to_html))
