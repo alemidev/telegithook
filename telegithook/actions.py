@@ -1,3 +1,8 @@
 actions = {
-    "forkee": "{__(_['sender']['login'], _['sender']['html_url'])} forked {__(_['repository']['name'], _['repository']['html_url'])}. Total forks now: {_['repository']['forks']}."
+    "forkee": (
+        "{html(r['sender']['login'], r['sender']['html_url'])}"
+        " forked"
+        " {html(r['repository']['name'], r['repository']['html_url'])}."
+        " Total forks now: {r['repository']['forks']}."
+    )
 }
