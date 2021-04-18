@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI, APIRouter, Request
 
 from .events import EVENTS
-from .bot.messages import send_message, send_raw_event
+from .bot import send_message, send_raw_event
 from .env import CHAT_ID, DEBUG
 
 
