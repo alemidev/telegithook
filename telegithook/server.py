@@ -32,11 +32,13 @@ async def webhook_base(req: Request):
                 count += 1
         if text:
             await send_message(CHAT_ID, text)
-        if DEBUG:
+        elif DEBUG:
             await send_raw_event(CHAT_ID, data)
         return {'ok': True, 'result': f'{count} events processed'}
     except Exception as e:
         logger.exception("Failed to process payload")
+        if DEBUG:
+            await send_raw_event(CHAT_ID, data)
         return {'ok': False, 'result': str(e)}
 
 
