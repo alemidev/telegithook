@@ -1,3 +1,4 @@
 from .code import Commit, Fork
+from .issues import IssueOpened
 
-EVENTS = [ Commit, Fork ]
+EVENTS = [ Commit, Fork, IssueOpened ]

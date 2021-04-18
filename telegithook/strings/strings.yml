@@ -1,5 +1,7 @@
-actions:
-  forkee: "{forker} forked {repo}. Total forks now: {forks}."
-  commits:
-    head: "<code>→ </code> <b>{repo}</b> [<u>{branch}</u>] | <i>new commits</i>\n"
-    row: "<code> → </code> <code>{author}</code> {message} [<a href=\"{url}\">{hash}</a>]\n"
+header: "<code>→ </code> <b>{repo}</b> [<u>{branch}</u>] | <i>{action}</i>\n"
+code:
+  forkee: "<code> → </code> <code>{forker}</code> forked <b>{repo}</b> [<u>{forks} total</u>]\n"
+  commits: "<code> → </code> <code>{author}</code> {message} [<a href=\"{url}\">{hash}</a>]\n"
+issues:
+  opened: "<code> → </code> <code>{author}</code> opened issue <a href=\"{url}\">#{number}</a>\n"
+  body: "<code>  → </code> <b>{title}</b> | <i>{text}</i> ...\n"
