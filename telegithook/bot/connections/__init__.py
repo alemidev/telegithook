@@ -18,7 +18,7 @@ class Connections:
         with open(self.path, 'w') as f:
             json.dump(self.data, f)
 
-    def get(self, repo:str) -> list[int]:
+    def get(self, repo:str) -> list:
         if repo in self.data:
             return self.data[repo]
         return []

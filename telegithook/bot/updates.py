@@ -5,7 +5,7 @@ from typing import Union
 from . import bot
 from .connections import CONNECTIONS
 
-async def dispatch(repository:str, message:Union[str,None]=None, data=Union[dict,None]=None):
+async def dispatch(repository:str, message:Union[str,None]=None, data:Union[dict,None]=None):
     for chat_id in CONNECTIONS.get(repository):
         if data:
             doc = io.BytesIO(json.dumps(data, indent=2).encode('utf-8'))
