@@ -23,13 +23,13 @@ class IssueOpened(EventBase):
             )
 
 class IssueComment(EventBase):
-    KEY = 'comment'
+    KEY = 'issue'
     comment_str = STR["issues"]["comment"]
     body_str = STR["issues"]["body"]
     
     @classmethod
     def isPresent(cls, event: dict) -> bool:
-        return 'issue' in event and cls.KEY in event and event["action"] == "created"
+        return cls.KEY in event and "comment" in event and event["action"] == "created"
 
     def parse(self) -> str:
         return self.header("issue comment") + self.comment_str.format(
@@ -42,3 +42,34 @@ class IssueComment(EventBase):
                         if len(self.event["comment"]["body"]) < 100 else
                      self.event["comment"]["body"][:100] + "...",
             )
+
+class IssueLabeled(EventBase):
+    KEY = 'issue'
+    labeled_str = STR["issues"]["label"]
+    
+    @classmethod
+    def isPresent(cls, event: dict) -> bool:
+        return cls.KEY in event and event["action"] == "labeled"
+
+    def parse(self) -> str:
+        return self.header("issue label") + self.labeled_str.format(
+                url=self.event["comment"]["html_url"],
+                number=self.event["issue"]["number"],
+                label=self.event["label"]["name"],
+            )
+
+class IssueAssigned(EventBase):
+    KEY = 'issue'
+    assignee_str = STR["issues"]["assignee"]
+    
+    @classmethod
+    def isPresent(cls, event: dict) -> bool:
+        return cls.KEY in event and event["action"] == "assigned"
+
+    def parse(self) -> str:
+        return self.header("issue assignee") + self.assignee_str.format(
+                url=self.event["comment"]["html_url"],
+                number=self.event["issue"]["number"],
+                assignee=self.event["assignee"]["login"],
+            )
+

@@ -5,4 +5,6 @@ code:
 issues:
   opened: "<code> → </code> issue <a href=\"{url}\">#{number}</a> opened | <b>{title}</b>\n"
   comment: "<code> → </code> comment on issue <a href=\"{url}\">#{number}</a> | <b>{title}</b>\n"
+  label: "<code> → </code> new label on issue <a href=\"{url}\">#{number}</a> | <b>{label}</b>\n"
+  assignee: "<code> → </code> new assignee on issue <a href=\"{url}\">#{number}</a> | <code>{assignee}</code>\n"
   body: "<code>  → </code> <code>{author}</code> > <i>{text}</i>\n"
