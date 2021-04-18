@@ -3,5 +3,6 @@ code:
   forkee: "<code> → </code> <code>{forker}</code> forked <b>{repo}</b> [<u>{forks} total</u>]\n"
   commits: "<code> → </code> <code>{author}</code> {message} [<b>{branch}</b>:<a href=\"{url}\">{hash}</a>]\n"
 issues:
-  opened: "<code> → </code> <code>{author}</code> opened issue <a href=\"{url}\">#{number}</a>\n"
-  body: "<code>  → </code> <b>{title}</b> | <i>{text}</i>\n"
+  opened: "<code> → </code> issue <a href=\"{url}\">#{number}</a> opened | <b>{title}</b>\n"
+  comment: "<code> → </code> comment on issue <a href=\"{url}\">#{number}</a> | <b>{title}</b>\n"
+  body: "<code>  → </code> <code>{author}</code> > <i>{text}</i>\n"
