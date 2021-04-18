@@ -11,11 +11,11 @@ class IssueOpened(EventBase):
         return cls.KEY in event and event["action"] == "opened"
 
     def parse(self) -> str:
-        return self.header("issue opened") + open_str.format(
+        return self.header("issue opened") + self.open_str.format(
                 url=self.event["issue"]["html_url"],
                 number=self.event["issue"]["number"],
                 title=self.event["issue"]["title"],
-            ) + body_str.format(
+            ) + self.body_str.format(
                 author=self.event["issue"]["user"]["login"],
                 text=self.event["issue"]["body"]
                         if len(self.event["issue"]["body"]) < 100 else
@@ -36,7 +36,7 @@ class IssueComment(EventBase):
                 url=self.event["comment"]["html_url"],
                 number=self.event["issue"]["number"],
                 title=self.event["issue"]["title"],
-            ) + body_str.format(
+            ) + self.body_str.format(
                 author=self.event["comment"]["user"]["login"],
                 text=self.event["comment"]["body"]
                         if len(self.event["comment"]["body"]) < 100 else
