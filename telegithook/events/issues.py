@@ -53,7 +53,7 @@ class IssueLabeled(EventBase):
 
     def parse(self) -> str:
         return self.header("issue label") + self.labeled_str.format(
-                url=self.event["comment"]["html_url"],
+                url=self.event["issue"]["html_url"],
                 number=self.event["issue"]["number"],
                 label=self.event["label"]["name"],
             )
@@ -68,7 +68,7 @@ class IssueAssigned(EventBase):
 
     def parse(self) -> str:
         return self.header("issue assignee") + self.assignee_str.format(
-                url=self.event["comment"]["html_url"],
+                url=self.event["issue"]["html_url"],
                 number=self.event["issue"]["number"],
                 assignee=self.event["assignee"]["login"],
             )
