@@ -2,3 +2,5 @@
 .vscode/
 
 __pycache__/
+
+telegithook/bot/connections/connections.json

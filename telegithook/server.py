@@ -3,8 +3,8 @@ import logging
 from fastapi import FastAPI, APIRouter, Request
 
 from .events import EVENTS
-from .bot import send_message, send_raw_event
-from .env import CHAT_ID, DEBUG
+from .bot.updates import dispatch
+from .env import DEBUG
 
 
 app = FastAPI()
@@ -23,6 +23,7 @@ async def index(req: Request):
 async def webhook_base(req: Request):
     try:
         data = await req.json()
+        repo = data["repository"]["full_name"]
 
         count = 0
         text = ''  # TODO fancier message/string builder
@@ -31,14 +32,14 @@ async def webhook_base(req: Request):
                 text += event(data).parse()
                 count += 1
         if text:
-            await send_message(CHAT_ID, text)
+            await dispatch(repo, message=text)
         elif DEBUG:
-            await send_raw_event(CHAT_ID, data)
+            await dispatch(repo, data=data)
         return {'ok': True, 'result': f'{count} events processed'}
     except Exception as e:
         logger.exception("Failed to process payload")
-        if DEBUG:
-            await send_raw_event(CHAT_ID, data)
+        if DEBUG and 'repo' in locals(): # gross but will do for now
+            await dispatch(repo, data=data)
         return {'ok': False, 'result': str(e)}
 
 
