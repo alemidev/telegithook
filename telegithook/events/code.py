@@ -1,19 +1,6 @@
-from strings import STR
-
-
-class EventBase(object):
-    KEY = 'None'
-
-    def __init__(self, event: dict):
-        self.event = event
-
-    @classmethod
-    def isPresent(cls, event: dict) -> bool:
-        return cls.KEY in event
-
-    def parse(self) -> str:
-        return str(self.event[self.KEY])
-
+from ..strings import STR
+from ..util.safeGetter import get_username
+from .base import EventBase
 
 class Commit(EventBase):
     KEY = 'commits'
@@ -27,8 +14,7 @@ class Commit(EventBase):
         )
         for commit in self.event[self.KEY]:
             to_return += self.row_str.format(
-                # TODO safe getter for this
-                author=commit['author']['username'],
+                author=get_username(commit['author']),
                 message=commit['message'],
                 url=commit['url'],
                 hash=commit['id'][:7],
@@ -46,6 +32,3 @@ class Fork(EventBase):
             repo=self.event['repository']['full_name'],
             forks=self.event['repository']['forks']
         )
-
-
-EVENTS = [Commit, Fork]
