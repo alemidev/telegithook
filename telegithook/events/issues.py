@@ -32,7 +32,7 @@ class IssueComment(EventBase):
         return 'issue' in event and cls.KEY in event and event["action"] == "created"
 
     def parse(self) -> str:
-        return self.header("issue comment") + comment_str.format(
+        return self.header("issue comment") + self.comment_str.format(
                 url=self.event["comment"]["html_url"],
                 number=self.event["comment"]["number"],
                 title=self.event["comment"]["title"],
