@@ -17,5 +17,7 @@ class IssueOpened(EventBase):
                 number=event["issue"]["number"],
             ) + body_str.format(
                 title=event["issue"]["title"],
-                text=event["issue"]["body"][:100],
+                text=event["issue"]["body"]
+                        if len(event["issue"]["body"]) < 100 else
+                     event["issue"]["body"][:100] + "...",
             )
