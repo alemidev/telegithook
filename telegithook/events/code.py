@@ -10,10 +10,10 @@ class Commit(EventBase):
         to_return = self.header("new commits")
         for commit in self.event[self.KEY]:
             to_return += self.row_str.format(
-				branch=self.event["ref"].split("/")[-1],
                 author=get_username(commit['author']),
                 message=commit['message'],
                 url=commit['url'],
+                branch=self.event["ref"].split("/")[-1],
                 hash=commit['id'][:7],
             )
         return to_return

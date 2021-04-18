@@ -1,7 +1,7 @@
 header: "<code>→ </code> <b>{repo}</b> | <i>{action}</i>\n"
 code:
   forkee: "<code> → </code> <code>{forker}</code> forked <b>{repo}</b> [<u>{forks} total</u>]\n"
-  commits: "<code> → </code> [<u>{branch}</u>] <code>{author}</code> {message} &lt;<a href=\"{url}\">{hash}</a>&gt;\n"
+  commits: "<code> → </code> <code>{author}</code> {message} [<b>{branch}</b>:<a href=\"{url}\">{hash}</a>]\n"
 issues:
   opened: "<code> → </code> <code>{author}</code> opened issue <a href=\"{url}\">#{number}</a>\n"
   body: "<code>  → </code> <b>{title}</b> | <i>{text}</i>\n"
