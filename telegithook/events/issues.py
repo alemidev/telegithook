@@ -34,8 +34,8 @@ class IssueComment(EventBase):
     def parse(self) -> str:
         return self.header("issue comment") + self.comment_str.format(
                 url=self.event["comment"]["html_url"],
-                number=self.event["comment"]["number"],
-                title=self.event["comment"]["title"],
+                number=self.event["issue"]["number"],
+                title=self.event["issue"]["title"],
             ) + body_str.format(
                 author=self.event["comment"]["user"]["login"],
                 text=self.event["comment"]["body"]
