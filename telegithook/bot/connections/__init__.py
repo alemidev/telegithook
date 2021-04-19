@@ -1,5 +1,6 @@
-import os
 import json
+import os
+
 
 class Connections:
     def __init__(self):
@@ -18,18 +19,18 @@ class Connections:
         with open(self.path, 'w') as f:
             json.dump(self.data, f)
 
-    def get(self, repo:str) -> list:
+    def get(self, repo: str) -> list:
         if repo in self.data:
             return self.data[repo]
         return []
 
-    def add(self, repo:str, chat_id:int):
+    def add(self, repo: str, chat_id: int):
         if repo not in self.data:
             self.data[repo] = []
         self.data[repo].append(chat_id)
         self.serialize_data()
 
-    def remove(self, repo:str) -> bool:
+    def remove(self, repo: str) -> bool:
         if repo in self.data and self.data.pop(repo):
             return True
         return False

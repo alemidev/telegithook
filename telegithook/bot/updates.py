@@ -8,7 +8,8 @@ from .connections import CONNECTIONS
 
 logger = logging.getLogger()
 
-async def dispatch(repository:str, message:Union[str,None]=None, data:Union[dict,None]=None):
+
+async def dispatch(repository: str, message: Union[str, None] = None, data: Union[dict, None] = None):
     for chat_id in CONNECTIONS.get(repository):
         try:
             if data:
@@ -18,5 +19,4 @@ async def dispatch(repository:str, message:Union[str,None]=None, data:Union[dict
             elif message:
                 await bot.send_message(chat_id=chat_id, text=message, disable_web_page_preview=True)
         except:
-            logger.exception(f"Error dispatching event to {chat_id}")
-
+            logger.exception(f'Error dispatching event to {chat_id}')
