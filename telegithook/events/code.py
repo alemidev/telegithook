@@ -11,7 +11,7 @@ class Commit(EventBase):
         for commit in self.event[self.KEY]:
             to_return += self.row_str.format(
                 author=get_username(commit['author']),
-                message=commit['message'],
+                message=commit['message'].replace("<", "&lt;").replace(">", "&gt;"),
                 url=commit['url'],
                 branch=self.event["ref"].split("/")[-1],
                 hash=commit['id'][:7],
