@@ -1,39 +1,48 @@
-import json
-import os
+from typing import List
+
+from motor.motor_asyncio import AsyncIOMotorClient
+
+from ...env import MONGO_URI
 
 
 class Connections:
     def __init__(self):
-        self.path = os.path.join(os.path.dirname(__file__), 'connections.json')
-        self.load_data()
+        self.collection = AsyncIOMotorClient(MONGO_URI).telegithook.repos
 
-    def load_data(self):
-        try:
-            with open(self.path) as f:
-                self.data = json.load(f)
-        except FileNotFoundError:
-            self.data = {}
-            self.serialize_data()
-
-    def serialize_data(self):
-        with open(self.path, 'w') as f:
-            json.dump(self.data, f)
-
-    def get(self, repo: str) -> list:
-        if repo in self.data:
-            return self.data[repo]
+    async def get(self, repo: str) -> List[int]:
+        find = await self.collection.find_one(
+            {
+                'repo': repo,
+            },
+        )
+        if find:
+            return find['chats']
         return []
 
-    def add(self, repo: str, chat_id: int):
-        if repo not in self.data:
-            self.data[repo] = []
-        self.data[repo].append(chat_id)
-        self.serialize_data()
-
-    def remove(self, repo: str) -> bool:
-        if repo in self.data and self.data.pop(repo):
+    async def add(self, repo: str, chat_id: int) -> bool:
+        chats = await self.get(repo)
+        if chat_id not in chats:
+            chats.append(chat_id)
+            await self.collection.update_one(
+                {
+                    'repo': repo,
+                },
+                {
+                    '$set': {
+                        'chats': chats,
+                    },
+                },
+                upsert=True,
+            )
             return True
         return False
+
+    async def remove(self, repo: str):
+        await self.collection.delete_one(
+            {
+                'repo': repo,
+            },
+        )
 
 
 CONNECTIONS = Connections()

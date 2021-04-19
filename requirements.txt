@@ -1,6 +1,6 @@
 aiogram
 fastapi
+motor
 pyaml
 python-dotenv
 uvicorn
-motor

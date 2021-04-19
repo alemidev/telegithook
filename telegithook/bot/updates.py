@@ -10,7 +10,7 @@ logger = logging.getLogger()
 
 
 async def dispatch(repository: str, message: Union[str, None] = None, data: Union[dict, None] = None):
-    for chat_id in CONNECTIONS.get(repository):
+    for chat_id in await CONNECTIONS.get(repository):
         try:
             if data:
                 doc = io.BytesIO(json.dumps(data, indent=2).encode('utf-8'))
@@ -18,5 +18,5 @@ async def dispatch(repository: str, message: Union[str, None] = None, data: Unio
                 await bot.send_document(chat_id=chat_id, document=doc, caption=message)
             elif message:
                 await bot.send_message(chat_id=chat_id, text=message, disable_web_page_preview=True)
-        except:
-            logger.exception(f'Error dispatching event to {chat_id}')
+        except Exception as e:
+            logger.exception(f'Error dispatching event to {chat_id}: {e}')
