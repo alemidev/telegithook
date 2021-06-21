@@ -1,6 +1,6 @@
 .idea/
 .vscode/
-
+.env
 __pycache__/
-
+telegit_env/
 telegithook/bot/connections/connections.json
