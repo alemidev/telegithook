@@ -31,9 +31,12 @@ async def webhook_base(req: Request):
             if event.isPresent(data):
                 text += event(data).parse()
                 count += 1
+        # await dispatch(repo, data=data)
+        # logging.info("normal wale se aaya hoon")
         if text:
             await dispatch(repo, message=text)
         elif DEBUG:
+            # logging.info("debug wale se aaya hoon")
             await dispatch(repo, data=data)
         return {'ok': True, 'result': f'{count} events processed'}
     except Exception as e:
