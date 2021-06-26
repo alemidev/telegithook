@@ -19,3 +19,6 @@ issues:
   locked: "<code> → </code> Issue <a href=\"{url}\">#{number}</a> locked | <b>{reason}</b>"
   unlocked: "<code> → </code> Issue <a href=\"{url}\">#{number}</a> unlocked"
   transferred: "<code> → </code> Issue <a href=\"{url}\">#{number}</a> transferred to | <b><a href=\"{target_link}\">{target}</a></b>"
+  milestoned: "<code> → </code> Issue <a href=\"{url}\">#{number}</a> milestoned | <b>{title}</b>"
+  demilestoned: "<code> → </code> Issue <a href=\"{url}\">#{number}</a> milestoned | <b>{title}</b>"
+

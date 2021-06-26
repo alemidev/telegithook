@@ -1,8 +1,8 @@
 from .code import Commit, Fork
-from .issues import IssueOpened, IssueComment, IssueLabeled, IssueAssigned, IssueEditedTitle, IssueEditedBody, IssueDeleted, IssuePinned, IssueTransferred, IssueUnpinned, IssueClosed, IssueReopened, IssueUnassigned, IssueLocked, IssueUnlocked, IssueTransferred
+from .issues import IssueOpened, IssueComment, IssueLabeled, IssueAssigned, IssueEditedTitle, IssueEditedBody, IssueDeleted, IssuePinned, IssueTransferred, IssueUnpinned, IssueClosed, IssueReopened, IssueUnassigned, IssueLocked, IssueUnlocked, IssueTransferred, IssueMilestoned, IssueDemilestoned
 from ..env import EXCLUDE_EVENTS
 
-_events = [ Commit, Fork, IssueOpened, IssueComment, IssueLabeled, IssueAssigned, IssueEditedTitle, IssueEditedBody, IssueDeleted, IssuePinned, IssueUnpinned, IssueUnpinned, IssueClosed, IssueReopened, IssueUnassigned, IssueLocked, IssueUnlocked, IssueTransferred ]
+_events = [ Commit, Fork, IssueOpened, IssueComment, IssueLabeled, IssueAssigned, IssueEditedTitle, IssueEditedBody, IssueDeleted, IssuePinned, IssueUnpinned, IssueUnpinned, IssueClosed, IssueReopened, IssueUnassigned, IssueLocked, IssueUnlocked, IssueTransferred, IssueMilestoned, IssueDemilestoned ]
 events = []
 
 for event in _events:

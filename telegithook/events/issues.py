@@ -233,3 +233,33 @@ class IssueTransferred(EventBase):
                 target_link=self.event["changes"]["new_repository"]["html_url"],
                 target=self.event["changes"]["new_repository"]["full_name"]
             )
+
+class IssueMilestoned(EventBase):
+    KEY = 'issue'
+    assignee_str = STR["issues"]["milestoned"]
+    
+    @classmethod
+    def isPresent(cls, event: dict) -> bool:
+        return cls.KEY in event and event["action"] == "milestoned"
+
+    def parse(self) -> str:
+        return self.header("issue milestoned") + self.assignee_str.format(
+                url=self.event["issue"]["html_url"],
+                number=self.event["issue"]["number"],
+                title=self.event["milestone"]["title"],
+            )
+
+class IssueDemilestoned(EventBase):
+    KEY = 'issue'
+    assignee_str = STR["issues"]["demilestoned"]
+    
+    @classmethod
+    def isPresent(cls, event: dict) -> bool:
+        return cls.KEY in event and event["action"] == "demilestoned"
+
+    def parse(self) -> str:
+        return self.header("issue demilestoned") + self.assignee_str.format(
+                url=self.event["issue"]["html_url"],
+                number=self.event["issue"]["number"],
+                title=self.event["milestone"]["title"],
+            )
