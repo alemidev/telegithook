@@ -21,4 +21,6 @@ issues:
   transferred: "<code> → </code> Issue <a href=\"{url}\">#{number}</a> transferred to | <b><a href=\"{target_link}\">{target}</a></b>"
   milestoned: "<code> → </code> Issue <a href=\"{url}\">#{number}</a> milestoned | <b>{title}</b>"
   demilestoned: "<code> → </code> Issue <a href=\"{url}\">#{number}</a> milestoned | <b>{title}</b>"
-
+collaborator:
+  removed: "<code> → </code> <a href=\"{profile_url}\">@{member_name}</a> has been removed from repo's collaboration"
+  added: "<code> → </code> <a href=\"{profile_url}\">@{member_name}</a> has accepted the invite for collaborating on this repo"
