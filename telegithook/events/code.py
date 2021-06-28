@@ -29,3 +29,30 @@ class Fork(EventBase):
             repo=self.event['repository']['full_name'],
             forks=self.event['repository']['forks']
         )
+
+class Starred(EventBase):
+    KEY = 'starred_at'
+    string = STR["code"]["starred"]
+
+    @classmethod
+    def isPresent(cls, event: dict) -> bool:
+        return cls.KEY in event and event["action"] == "created"
+
+    def parse(self) -> str:
+        return self.header("new star") + self.string.format(
+            starred_at=self.event['starred_at'],
+            stargazers_count=self.event['repository']["stargazers_count"],
+        )
+
+class Unstarred(EventBase):
+    KEY = 'starred_at'
+    string = STR["code"]["unstarred"]
+
+    @classmethod
+    def isPresent(cls, event: dict) -> bool:
+        return cls.KEY in event and event["action"] == "deleted"
+
+    def parse(self) -> str:
+        return self.header("star removed") + self.string.format(
+            stargazers_count=self.event['repository']["stargazers_count"],
+        )

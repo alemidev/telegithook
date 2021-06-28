@@ -2,6 +2,9 @@ header: "<code>→ </code> <b>{repo}</b> | <i>{action}</i>\n"
 code:
   forkee: "<code> → </code> <code>{forker}</code> forked <b>{repo}</b> [<u>{forks} total</u>]\n"
   commits: "<code> → </code> [<b>{branch}</b>:<a href=\"{url}\">{hash}</a>] <code>{author}</code> {message}\n"
+  starred: "<code> → </code> Repo Starred at <b>{starred_at}</b> | <b>Total stars now</b> = <b>{stargazers_count}</b>"
+  unstarred: "<code> → </code> The repository was unstarred | <b>Total stars now</b> = <b>{stargazers_count}</b>"
+  
 issues:
   opened: "<code> → </code> issue <a href=\"{url}\">#{number}</a> opened | <b>{title}</b>\n"
   comment: "<code> → </code> comment on issue <a href=\"{url}\">#{number}</a> | <b>{title}</b>\n"
@@ -24,3 +27,9 @@ issues:
 collaborator:
   removed: "<code> → </code> <a href=\"{profile_url}\">@{member_name}</a> has been removed from repo's collaboration"
   added: "<code> → </code> <a href=\"{profile_url}\">@{member_name}</a> has accepted the invite for collaborating on this repo"
+milestone:
+  created: "<code> → </code> Milestone <a href=\"{milestone_url}\">{milestone_title}</a> created | Due On : <b>{milestone_due_on}</b> | Description : <code>{milestone_description}</code>"
+  opened: "<code> → </code> Milestone <a href=\"{milestone_url}\">{milestone_title}</a> opened | Due On : <b>{milestone_due_on}</b> | Description : <code>{milestone_description}</code>"
+  edited: "<code> → </code> Milestone <a href=\"{milestone_url}\">{milestone_title}</a> edited | Due On : <b>{milestone_due_on}</b> | Description : <code>{milestone_description}</code>"
+  closed: "<code> → </code> Milestone <a href=\"{milestone_url}\">{milestone_title}</a> closed | Due On : <b>{milestone_due_on}</b> | Description : <code>{milestone_description}</code>"
+  deleted: "<code> → </code> Milestone <a href=\"{milestone_url}\">{milestone_title}</a> deleted | Due On : <b>{milestone_due_on}</b> | Description : <code>{milestone_description}</code>"
