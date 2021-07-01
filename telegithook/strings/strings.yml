@@ -33,3 +33,6 @@ milestone:
   edited: "<code> → </code> Milestone <a href=\"{milestone_url}\">{milestone_title}</a> edited | Due On : <b>{milestone_due_on}</b> | Description : <code>{milestone_description}</code>"
   closed: "<code> → </code> Milestone <a href=\"{milestone_url}\">{milestone_title}</a> closed | Due On : <b>{milestone_due_on}</b> | Description : <code>{milestone_description}</code>"
   deleted: "<code> → </code> Milestone <a href=\"{milestone_url}\">{milestone_title}</a> deleted | Due On : <b>{milestone_due_on}</b> | Description : <code>{milestone_description}</code>"
+branch:
+  created: "<code> → </code> Branch Created | <b>{branch_title}</b>"
+  deleted: "<code> → </code> Branch Created | <b>{branch_title}</b>"
