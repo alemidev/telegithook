@@ -8,14 +8,15 @@ class Commit(EventBase):
 
     def parse(self) -> str:
         to_return = self.header("new commits")
-        for commit in self.event[self.KEY]:
-            to_return += self.row_str.format(
-                author=get_username(commit['author']),
-                message=commit['message'].replace("<", "&lt;").replace(">", "&gt;"),
-                url=commit['url'],
-                branch=self.event["ref"].split("/")[-1],
-                hash=commit['id'][:7],
-            )
+        if len(self.event[self.KEY]) != 0:
+            for commit in self.event[self.KEY]:
+                to_return += self.row_str.format(
+                    author=get_username(commit['author']),
+                    message=commit['message'].replace("<", "&lt;").replace(">", "&gt;"),
+                    url=commit['url'],
+                    branch=self.event["ref"].split("/")[-1],
+                    hash=commit['id'][:7],
+                )
         return to_return
 
 
