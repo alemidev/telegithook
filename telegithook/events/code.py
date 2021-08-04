@@ -3,7 +3,7 @@ from ..util.safeGetter import get_username
 from .base import EventBase
 
 class Commit(EventBase):
-    KEY = 'commits'
+    KEY = 'push'
     row_str = STR["code"]["commits"]
 
     def parse(self) -> str:
@@ -21,7 +21,7 @@ class Commit(EventBase):
 
 
 class Fork(EventBase):
-    KEY = 'forkee'
+    KEY = 'fork'
     string = STR["code"]["forkee"]
 
     def parse(self) -> str:
@@ -32,7 +32,7 @@ class Fork(EventBase):
         )
 
 class Starred(EventBase):
-    KEY = 'starred_at'
+    KEY = 'star'
     string = STR["code"]["starred"]
 
     @classmethod
