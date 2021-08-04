@@ -23,24 +23,14 @@ async def index(req: Request):
 async def webhook_base(req: Request):
     try:
         data = await req.json()
+        headers = req.headers
+        event = headers["X-GitHub-Event"]
         repo = data["repository"]["full_name"]
-
-        count = 0
-        text = ''  # TODO fancier message/string builder
-        for event in EVENTS:
-            if event.isPresent(data):
-                text += event(data).parse()
-                count += 1
-        # await dispatch(repo, data=data)
-        # logging.info("normal wale se aaya hoon")
-        if text:
-            await dispatch(repo, message=text)
-        elif DEBUG:
-            # logging.info("debug wale se aaya hoon")
-            await dispatch(repo, data=data)
-        return {'ok': True, 'result': f'{count} events processed'}
+        await dispatch(repo, message=EVENTS[event](data).parse())
+        return {'ok': True, 'result': f'1 event processed'}
     except Exception as e:
         logger.exception("Failed to process payload")
+        logger.error(str(data)) # TODO remove later
         if DEBUG and 'repo' in locals(): # gross but will do for now
             await dispatch(repo, data=data)
         return {'ok': False, 'result': str(e)}
