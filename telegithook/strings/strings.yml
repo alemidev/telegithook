@@ -1,5 +1,5 @@
 header: "<code>→ </code> <b>{repo}</b> | <i>{action}</i>\n"
-generic: "<code> → </code> <b>{key}</b> {action} (<code>{sender}</code>\n"
+generic: "<code> → </code> <b>{key}</b> {action} (<code>{sender}</code>)\n"
 code:
   forkee: "<code> → </code> <code>{forker}</code> forked <b>{repo}</b> [<u>{forks} total</u>]\n"
   commits: "<code> → </code> [<b>{branch}</b>:<a href=\"{url}\">{hash}</a>] <code>{author}</code> {message}\n"
