@@ -8,8 +8,8 @@ class Commit(EventBase):
 
     def parse(self) -> str:
         to_return = self.header("new commits")
-        if len(self.event[self.KEY]) != 0:
-            for commit in self.event[self.KEY]:
+        if len(self.event["commits"]) != 0:
+            for commit in self.event["commits"]:
                 to_return += self.row_str.format(
                     author=get_username(commit['author']),
                     message=commit['message'].replace("<", "&lt;").replace(">", "&gt;"),
