@@ -26,7 +26,7 @@ async def webhook_base(req: Request):
         headers = req.headers
         event = headers["X-GitHub-Event"]
         repo = data["repository"]["full_name"]
-        await dispatch(repo, message=EVENTS[event](data).parse())
+        await dispatch(repo, message=EVENTS[event](data, event).parse())
         return {'ok': True, 'result': f'1 event processed'}
     except Exception as e:
         logger.exception("Failed to process payload")

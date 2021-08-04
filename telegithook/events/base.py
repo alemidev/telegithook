@@ -1,10 +1,14 @@
+from typing import Optional
+
 from ..strings import STR
 from ..util.safeGetter import get_username
 
 class EventBase(object):
-    KEY : str = 'None'
+    KEY : Optional[str] = None
 
-    def __init__(self, event: dict):
+    def __init__(self, event: dict, key = None):
+        if key is not None and self.KEY is None:
+            self.KEY = key
         self.event = event
 
     def header(self, title : str = "") -> str:
